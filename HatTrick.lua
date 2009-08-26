@@ -8,8 +8,6 @@ end
 
 local helm = CreateFrame('CheckButton', 'HelmToggle', PaperDollFrame, 'UIRadioButtonTemplate')
 helm:SetPoint('TOPLEFT', CharacterHeadSlot, 'TOPRIGHT', 2, 3)
-helm:SetWidth(22)
-helm:SetHeight(22)
 helm:SetChecked(ShowingHelm())
 helm:SetToplevel()
 helm:RegisterEvent('UNIT_MODEL_CHANGED')
@@ -18,8 +16,6 @@ helm:SetScript('OnEvent', function(self) self:SetChecked(ShowingHelm()) end)
 
 local cloak = CreateFrame('CheckButton', 'CloakToggle', PaperDollFrame, 'UIRadioButtonTemplate')
 cloak:SetPoint('TOPLEFT', CharacterBackSlot, 'TOPRIGHT', 2, 3)
-cloak:SetWidth(22)
-cloak:SetHeight(22)
 cloak:SetChecked(ShowingCloak())
 cloak:SetToplevel()
 cloak:RegisterEvent('UNIT_MODEL_CHANGED')
