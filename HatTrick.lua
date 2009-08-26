@@ -2,31 +2,28 @@
 local ShowCloak, ShowHelm, noop = ShowCloak, ShowHelm, function() end
 _G.ShowCloak, _G.ShowHelm = noop, noop
 
-for _,check in pairs{InterfaceOptionsDisplayPanelShowCloak, InterfaceOptionsDisplayPanelShowHelm} do
-	check:Disable()
-	check.Enable = noop
+for k, v in next, {InterfaceOptionsDisplayPanelShowCloak, InterfaceOptionsDisplayPanelShowHelm} do
+	v:SetButtonState('DISABLED', true)
 end
 
-local hcheck = CreateFrame("CheckButton", "HelmCheckBox", PaperDollFrame, "OptionsCheckButtonTemplate")
-hcheck:ClearAllPoints()
-hcheck:SetWidth(22)
-hcheck:SetHeight(22)
-hcheck:SetPoint("TOPLEFT", CharacterHeadSlot, "BOTTOMRIGHT", 5, 5)
-hcheck:SetScript("OnClick", function() ShowHelm(not ShowingHelm()) end)
-hcheck:SetScript("OnEvent", function() hcheck:SetChecked(ShowingHelm()) end)
-hcheck:RegisterEvent("UNIT_MODEL_CHANGED")
-hcheck:SetToplevel(true)
-
-local ccheck = CreateFrame("CheckButton", "CloakCheckBox", PaperDollFrame, "OptionsCheckButtonTemplate")
-ccheck:ClearAllPoints()
-ccheck:SetWidth(22)
-ccheck:SetHeight(22)
-ccheck:SetPoint("TOPLEFT", CharacterBackSlot, "BOTTOMRIGHT", 5, 5)
-ccheck:SetScript("OnClick", function() ShowCloak(not ShowingCloak()) end)
-ccheck:SetScript("OnEvent", function() ccheck:SetChecked(ShowingCloak()) end)
-ccheck:RegisterEvent("UNIT_MODEL_CHANGED")
-ccheck:SetToplevel(true)
+local helm = CreateFrame('CheckButton', 'HelmToggle', PaperDollFrame, 'OptionsCheckButtonTemplate')
+helm:SetPoint('TOPLEFT', CharacterHeadSlot, 'BOTTOMRIGHT', 5, 5)
+helm:SetWidth(22)
+helm:SetHeight(22)
+helm:SetChecked(ShowingHelm())
+helm:SetToplevel()
+helm:RegisterEvent('UNIT_MODEL_CHANGED')
+helm:SetScript('OnClick', function() ShowHelm(not ShowingHelm()) end)
+helm:SetScript('OnEvent', function(self) self:SetChecked(ShowingHelm()) end)
 
 
-hcheck:SetChecked(ShowingHelm())
-ccheck:SetChecked(ShowingCloak())
+
+local cloak = CreateFrame('CheckButton', 'CloakToggle', PaperDollFrame, 'OptionsCheckButtonTemplate')
+cloak:SetPoint('TOPLEFT', CharacterBackSlot, 'BOTTOMRIGHT', 5, 5)
+cloak:SetWidth(22)
+cloak:SetHeight(22)
+cloak:SetChecked(ShowingCloak())
+cloak:SetToplevel()
+cloak:RegisterEvent('UNIT_MODEL_CHANGED')
+cloak:SetScript('OnClick', function() ShowCloak(not ShowingCloak()) end)
+cloak:SetScript('OnEvent', function(self) self:SetChecked(ShowingCloak()) end)
