@@ -7,7 +7,7 @@ for k, v in next, {InterfaceOptionsDisplayPanelShowCloak, InterfaceOptionsDispla
 end
 
 local helm = CreateFrame('CheckButton', 'HelmToggle', PaperDollFrame, 'UIRadioButtonTemplate')
-helm:SetPoint('TOPLEFT', CharacterHeadSlot, 'BOTTOMRIGHT', 5, 5)
+helm:SetPoint('TOPLEFT', CharacterHeadSlot, 'TOPRIGHT', 2, 3)
 helm:SetWidth(22)
 helm:SetHeight(22)
 helm:SetChecked(ShowingHelm())
@@ -17,7 +17,7 @@ helm:SetScript('OnClick', function() ShowHelm(not ShowingHelm()) end)
 helm:SetScript('OnEvent', function(self) self:SetChecked(ShowingHelm()) end)
 
 local cloak = CreateFrame('CheckButton', 'CloakToggle', PaperDollFrame, 'UIRadioButtonTemplate')
-cloak:SetPoint('TOPLEFT', CharacterBackSlot, 'BOTTOMRIGHT', 5, 5)
+cloak:SetPoint('TOPLEFT', CharacterBackSlot, 'TOPRIGHT', 2, 3)
 cloak:SetWidth(22)
 cloak:SetHeight(22)
 cloak:SetChecked(ShowingCloak())
