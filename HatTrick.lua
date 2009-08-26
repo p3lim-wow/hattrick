@@ -6,7 +6,7 @@ for k, v in next, {InterfaceOptionsDisplayPanelShowCloak, InterfaceOptionsDispla
 	v:SetButtonState('DISABLED', true)
 end
 
-local helm = CreateFrame('CheckButton', 'HelmToggle', PaperDollFrame, 'OptionsCheckButtonTemplate')
+local helm = CreateFrame('CheckButton', 'HelmToggle', PaperDollFrame, 'UIRadioButtonTemplate')
 helm:SetPoint('TOPLEFT', CharacterHeadSlot, 'BOTTOMRIGHT', 5, 5)
 helm:SetWidth(22)
 helm:SetHeight(22)
@@ -16,9 +16,7 @@ helm:RegisterEvent('UNIT_MODEL_CHANGED')
 helm:SetScript('OnClick', function() ShowHelm(not ShowingHelm()) end)
 helm:SetScript('OnEvent', function(self) self:SetChecked(ShowingHelm()) end)
 
-
-
-local cloak = CreateFrame('CheckButton', 'CloakToggle', PaperDollFrame, 'OptionsCheckButtonTemplate')
+local cloak = CreateFrame('CheckButton', 'CloakToggle', PaperDollFrame, 'UIRadioButtonTemplate')
 cloak:SetPoint('TOPLEFT', CharacterBackSlot, 'BOTTOMRIGHT', 5, 5)
 cloak:SetWidth(22)
 cloak:SetHeight(22)
