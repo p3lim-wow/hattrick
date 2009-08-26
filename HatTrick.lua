@@ -10,14 +10,22 @@ local helm = CreateFrame('CheckButton', 'HelmToggle', PaperDollFrame, 'UIRadioBu
 helm:SetPoint('TOPLEFT', CharacterHeadSlot, 'TOPRIGHT', 2, 3)
 helm:SetChecked(ShowingHelm())
 helm:SetToplevel()
-helm:RegisterEvent('UNIT_MODEL_CHANGED')
+helm:RegisterEvent('PLAYER_FLAGS_CHANGED')
 helm:SetScript('OnClick', function() ShowHelm(not ShowingHelm()) end)
-helm:SetScript('OnEvent', function(self) self:SetChecked(ShowingHelm()) end)
+helm:SetScript('OnEvent', function(self, event, unit)
+	if(unit == 'player') then
+		self:SetChecked(ShowingHelm())
+	end
+end)
 
 local cloak = CreateFrame('CheckButton', 'CloakToggle', PaperDollFrame, 'UIRadioButtonTemplate')
 cloak:SetPoint('TOPLEFT', CharacterBackSlot, 'TOPRIGHT', 2, 3)
 cloak:SetChecked(ShowingCloak())
 cloak:SetToplevel()
-cloak:RegisterEvent('UNIT_MODEL_CHANGED')
+cloak:RegisterEvent('PLAYER_FLAGS_CHANGED')
 cloak:SetScript('OnClick', function() ShowCloak(not ShowingCloak()) end)
-cloak:SetScript('OnEvent', function(self) self:SetChecked(ShowingCloak()) end)
+cloak:SetScript('OnEvent', function(self, event, unit)
+	if(unit == 'player') then
+		self:SetChecked(ShowingCloak())
+	end
+end)
